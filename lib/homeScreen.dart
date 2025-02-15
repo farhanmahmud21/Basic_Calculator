@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new2/calculator_buttons.dart';
 
 import 'buildButton.dart';
 
@@ -25,7 +26,7 @@ class Homescreen extends StatelessWidget {
           
           ),
         ),
-        Expanded(child: Calculator_buttons()),
+        Expanded(child: CalculatorButtons()),
 
       ],)
     );

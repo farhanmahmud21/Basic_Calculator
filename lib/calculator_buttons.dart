@@ -10,62 +10,39 @@ class CalculatorButtons extends StatefulWidget {
 
 class _CalculatorButtonsState extends State<CalculatorButtons> {
   String _output = "0";
-  String _currentNumber = "";
-  double _num1 = 0;
+  String _input = "";
+
   String _operand = "";
-  bool _newNumber = true;
+  double _num1 = 0;
+  double _num2 = 0;
 
   void _buttonPressed(String buttonText) {
     setState(() {
       if (buttonText == "C") {
         _output = "0";
-        _currentNumber = "";
+        _input = "";
         _num1 = 0;
         _operand = "";
-        _newNumber = true;
-      }
-      else if (buttonText == "+" || buttonText == "-" ||
-          buttonText == "×" || buttonText == "÷") {
-        if (_currentNumber.isNotEmpty) {
-          _num1 = double.parse(_currentNumber);
-          _operand = buttonText;
-          _newNumber = true;
+        _num2 = 0;
+      } else if (buttonText == "=") {
+        _num2 = double.parse(_input);
+        if (_operand == "+") {
+          _output = (_num1 + _num2).toString();
+        } else if (_operand == "÷") {
+          _output = (_num1 / _num2).toString();
+        } else if (_operand == "-") {
+          _output = (_num1 - _num2).toString();
+        } else if (_operand == "*") {
+          _output = (_num1 * _num2).toString();
         }
-      }
-      else if (buttonText == "=") {
-        if (_operand.isNotEmpty && _currentNumber.isNotEmpty) {
-          double num2 = double.parse(_currentNumber);
-          double result = 0;
-
-          switch (_operand) {
-            case "+":
-              result = _num1 + num2;
-              break;
-            case "-":
-              result = _num1 - num2;
-              break;
-            case "×":
-              result = _num1 * num2;
-              break;
-            case "÷":
-              result = _num1 / num2;
-              break;
-          }
-
-          _output = result.toString();
-          _currentNumber = result.toString();
-          _operand = "";
-          _newNumber = true;
-        }
-      }
-      else {
-        if (_newNumber) {
-          _currentNumber = buttonText;
-          _newNumber = false;
-        } else {
-          _currentNumber += buttonText;
-        }
-        _output = _currentNumber;
+        _input = _output;
+      } else if (['+', '-', '*', "÷"].contains(buttonText)) {
+        _num1 = double.parse(_input);
+        _operand = buttonText;
+        _input = "";
+      } else {
+        _input += buttonText;
+        _output = _input;
       }
     });
   }
@@ -104,22 +81,30 @@ class _CalculatorButtonsState extends State<CalculatorButtons> {
                       BuildButton(
                         text: '7',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('7');
+                        },
                       ),
                       BuildButton(
                         text: '8',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('8');
+                        },
                       ),
                       BuildButton(
                         text: '9',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('9');
+                        },
                       ),
                       BuildButton(
                         text: '÷',
                         color: Colors.orange,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('÷');
+                        },
                       ),
                     ],
                   ),
@@ -130,22 +115,30 @@ class _CalculatorButtonsState extends State<CalculatorButtons> {
                       BuildButton(
                         text: '4',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('4');
+                        },
                       ),
                       BuildButton(
                         text: '5',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('5');
+                        },
                       ),
                       BuildButton(
                         text: '6',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('6');
+                        },
                       ),
                       BuildButton(
                         text: '×',
                         color: Colors.orange,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('*');
+                        },
                       ),
                     ],
                   ),
@@ -156,22 +149,30 @@ class _CalculatorButtonsState extends State<CalculatorButtons> {
                       BuildButton(
                         text: '1',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('1');
+                        },
                       ),
                       BuildButton(
                         text: '2',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('2');
+                        },
                       ),
                       BuildButton(
                         text: '3',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('3');
+                        },
                       ),
                       BuildButton(
                         text: '-',
                         color: Colors.orange,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('-');
+                        },
                       ),
                     ],
                   ),
@@ -182,22 +183,30 @@ class _CalculatorButtonsState extends State<CalculatorButtons> {
                       BuildButton(
                         text: 'C',
                         color: Colors.red,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('C');
+                        },
                       ),
                       BuildButton(
                         text: '0',
                         color: Colors.grey.shade400,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('0');
+                        },
                       ),
                       BuildButton(
                         text: '=',
                         color: Colors.green,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('=');
+                        },
                       ),
                       BuildButton(
                         text: '+',
                         color: Colors.orange,
-                        onPressed: _buttonPressed,
+                        onPressed: () {
+                          _buttonPressed('+');
+                        },
                       ),
                     ],
                   ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BuildButton extends StatelessWidget {
   final String text;
   final Color color;
-  final Function(String) onPressed;
+  final Function onPressed;
 
   const BuildButton({
     super.key,
@@ -23,7 +23,7 @@ class BuildButton extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(4),
             child: InkWell(
-              onTap: () => onPressed(text),
+              onTap: () => onPressed(),
               borderRadius: BorderRadius.circular(4),
               child: Center(
                 child: Text(
